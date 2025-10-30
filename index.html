@@ -221,25 +221,25 @@ loopBtn.addEventListener('click',()=>{
 
 player.onended = () => {
   if (loopMode === "one") {
-    // Repeat the current track
+    // Repeat current track
     player.currentTime = 0;
     player.play();
   } else if (loopMode === "all") {
-    // Loop through all tracks continuously
+    // Loop through all tracks
     loadPlay(idx + 1);
   } else {
-    // No Loop — stop after the final track
+    // No Loop — stop after final track
     if (idx < album.tracks.length - 1) {
       loadPlay(idx + 1);
     } else {
-      // Last track finished — stop and reset player state
+      // Last track: pause, keep playhead at the end
       player.pause();
-      player.currentTime = 0;
       playPause.textContent = '▶ Play';
-      nowPlaying.textContent = `Playback finished — ${album.title}`;
+      nowPlaying.textContent = `Playback complete — ${album.title}`;
     }
   }
 };
+
 
 
 
@@ -310,5 +310,6 @@ render();load(0);
 </script>
 </body>
 </html>
+
 
 
