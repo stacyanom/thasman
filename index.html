@@ -219,11 +219,25 @@ loopBtn.addEventListener('click',()=>{
   else{loopMode="none";loopBtn.textContent="🚫";loopBtn.title="No Loop";}
 });
 
-player.onended=()=>{
-  if(loopMode==="one"){player.currentTime=0;player.play();}
-  else if(loopMode==="all"){loadPlay(idx+1);}
-  else if(idx<album.tracks.length-1){load(idx+1);}
+player.onended = () => {
+  if (loopMode === "one") {
+    // Repeat current track
+    player.currentTime = 0;
+    player.play();
+  } else if (loopMode === "all") {
+    // Normal album loop
+    loadPlay(idx + 1);
+  } else {
+    // "No Loop" mode — play next track, and restart from beginning at the end
+    if (idx < album.tracks.length - 1) {
+      loadPlay(idx + 1);
+    } else {
+      // At the end, restart from track 1 automatically
+      loadPlay(0);
+    }
+  }
 };
+
 
 album.tracks.forEach((t,i)=>{
   const a=new Audio(t.file);
@@ -292,3 +306,4 @@ render();load(0);
 </script>
 </body>
 </html>
+
