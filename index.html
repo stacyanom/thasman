@@ -221,24 +221,27 @@ loopBtn.addEventListener('click',()=>{
 
 player.onended = () => {
   if (loopMode === "one") {
-    // Repeat current track
+    // Repeat the same track
     player.currentTime = 0;
     player.play();
   } else if (loopMode === "all") {
-    // Loop through all tracks
+    // Loop through all tracks continuously
     loadPlay(idx + 1);
   } else {
-    // No Loop — stop after final track
+    // No Loop mode
     if (idx < album.tracks.length - 1) {
+      // Play next track normally
       loadPlay(idx + 1);
     } else {
-      // Last track: pause, keep playhead at the end
-      player.pause();
+      // Last track: stop, reset to track 1, and remain paused
+      load(0); // Load first track
+      player.pause(); // Ensure it stays paused
       playPause.textContent = '▶ Play';
-      nowPlaying.textContent = `Playback complete — ${album.title}`;
+      nowPlaying.textContent = `Album finished — ready to replay ${album.title}`;
     }
   }
 };
+
 
 
 
@@ -310,6 +313,7 @@ render();load(0);
 </script>
 </body>
 </html>
+
 
 
 
