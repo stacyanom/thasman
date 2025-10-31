@@ -92,7 +92,7 @@ input[type=range]::-moz-range-thumb{width:10px;height:18px;background:var(--acce
       <div class="panel">
         <div class="controls">
           <span id="nowPlaying" style="font-weight:700">Loading…</span>
-          <button class="loop-btn" id="loopBtn" title="No Loop">🚫</button>
+          <button class="loop-btn" id="loopBtn" title="No Loop">↔️</button>
         </div>
 
         <!-- Updated timebar -->
@@ -216,7 +216,7 @@ slider.addEventListener('mouseleave',()=>tooltip.style.display='none');
 loopBtn.addEventListener('click',()=>{
   if(loopMode==="none"){loopMode="all";loopBtn.textContent="🔁";loopBtn.title="Loop All";}
   else if(loopMode==="all"){loopMode="one";loopBtn.textContent="🔂";loopBtn.title="Loop One";}
-  else{loopMode="none";loopBtn.textContent="🚫";loopBtn.title="No Loop";}
+  else{loopMode="none";loopBtn.textContent="↔️";loopBtn.title="No Loop";}
 });
 
 player.onended = () => {
@@ -313,6 +313,7 @@ render();load(0);
 </script>
 </body>
 </html>
+
 
 
 
